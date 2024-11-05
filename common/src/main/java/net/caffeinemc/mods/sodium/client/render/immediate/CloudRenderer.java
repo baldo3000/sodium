@@ -45,6 +45,10 @@ public class CloudRenderer {
         this.reloadTextures(resourceProvider);
     }
 
+    private float from8BitChannelCustom(int i) {
+        return (float)i / 255.0F;
+    }
+
     public void render(Camera camera,
                        ClientLevel level,
                        Matrix4f projectionMatrix,
@@ -110,7 +114,7 @@ public class CloudRenderer {
             RenderSystem.disableCull();
         }
 
-        RenderSystem.setShaderColor(ARGB.from8BitChannel(ARGB.red(color)), ARGB.from8BitChannel(ARGB.green(color)), ARGB.from8BitChannel(ARGB.blue(color)), 0.8F);
+        RenderSystem.setShaderColor(from8BitChannelCustom(ARGB.red(color)), from8BitChannelCustom(ARGB.green(color)), from8BitChannelCustom(ARGB.blue(color)), 0.8F);
 
         vertexBuffer.bind();
 
